@@ -1,125 +1,788 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Infinite Lights | Demo 1 | Codrops</title>
-		<meta name="description" content="A Three.js powered animation that resembles the nightly view of fast cars on a road." />
-		<meta name="keywords" content="webgl, three.js, cars, road, highway, lights, speed, web development, demo, javascript" />
-		<meta name="author" content="Codrops" />
-		<link rel="shortcut icon" href="favicon.ico">
-		<link rel="stylesheet" href="https://use.typekit.net/uok8swb.css">
-		<link rel="stylesheet" type="text/css" href="css/base.css" />
-		<script>
-		document.documentElement.className = "js";
-		var supportsCssVars = function() { var e, t = document.createElement("style"); return t.innerHTML = "root: { --tmp-var: bold; }", document.head.appendChild(t), e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)")), t.parentNode.removeChild(t), e };
-		supportsCssVars() || alert("Please view this demo in a modern browser that supports CSS Variables.");
-		</script>
-	</head>
-	<body class="demo-1">
-		<main>
-			<!-- <div class="frame">
-				<div class="frame__title-wrap">
-					<h1 class="frame__title">Infinite Lights</h1>
-					<div class="frame__links">
-						<a href="https://tympanus.net/Development/webGLImageTransitions/">Previous demo</a>
-						<a href="https://tympanus.net/codrops/?p=44516">Article</a>
-						<a href="https://github.com/Anemolo/InfiniteLights">GitHub</a>
-					</div>
-				</div>
-				<div class="frame__info">Hint: Press to speed up</div>
-				<div class="frame__demos">
-					<a href="index.html" class="frame__demo frame__demo--current">interstate 1</a>
-					<a href="index2.html" class="frame__demo">interstate 2</a>
-					<a href="index3.html" class="frame__demo">interstate 3</a>
-					<a href="index4.html" class="frame__demo">interstate 4</a>
-					<a href="index5.html" class="frame__demo">interstate 5</a>
-					<a href="index6.html" class="frame__demo">interstate 6</a>
-					<a href="index7.html" class="frame__demo">interstate 7</a>
-				</div>
-			</div> -->
-			<div class="content">
-				<div id="app"></div>
-				<!-- <div class="content__title-wrap">
-					<span class="content__pretitle">Indigo Road Systems</span>
-					<h2 class="content__title">Traffic Ohio</h2>
-					<a class="content__link" href="#">Live updates</a>
-				</div> -->
-			</div>
-		</main>
-		<script src="js/three.min.js"></script>
-		<script src="js/postprocessing.min.js"></script>
-		<script src="js/InfiniteLights.js"></script>
-		<script src="js/Distortions.js"></script>
-		<script>
-		(function() {
+<html lang="en">
 
-			const container = document.getElementById('app');
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>政函数的娱乐平台</title>
 
-			const options = {
-				onSpeedUp: (ev) => {					
-				},
-				onSlowDown: (ev) => {
-				},
-				// mountainDistortion || LongRaceDistortion || xyDistortion || turbulentDistortion || turbulentDistortionStill || deepDistortionStill || deepDistortion
-				distortion: mountainDistortion, 
-				
-				length: 400,
-				roadWidth: 9,
-				islandWidth: 2,
-				lanesPerRoad: 3,
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./index1.css">
+    <link rel="stylesheet" href="./index2.css">
+    <link rel="stylesheet" href="./fengche.css">
+</head>
+<style>
+    canvas {
+        margin: 0;
+        padding: 0;
+        touch-action: none;
+        margin-top: -100px;
+        /* background-color: skyblue; */
+        /* z-index: -40; */
+        z-index: 99;
+    }
 
-				fov: 90,
-				fovSpeedUp: 150,
-				speedUp: 2,
-				carLightsFade: 0.4,
+    #big_title {
+        position: absolute;
+        width: 300px;
+        height: 50px;
+        top: 0;
+        left: 50%;
+        margin: 200px auto;
+        font-size: 30px;
+        margin-left: 30px;
+        transform: translateX(-50%);
+        color: red;
+    }
 
-				totalSideLightSticks: 50,
-				lightPairsPerRoadWay: 50,
+    #big_img {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 607px;
+        background-color: rgba(0, 0, 0, 0.5);
+        margin-top: -660px;
+        z-index: -55;
+    }
+</style>
 
-				// Percentage of the lane's width
-				shoulderLinesWidthPercentage: 0.05,
-				brokenLinesWidthPercentage: 0.1,
-				brokenLinesLengthPercentage: 0.5,
+<body>
+    <div class="zhengtikuangjia" id="app">
+        <div class="toububuju"><i class="el-icon-s-unfold" @click="kuozhanfu"></i> 政函数的娱乐平台</div>
+        <div class="neirongbuju">
+            <div class="zuocelan">
+                <el-menu default-active="0-1" :class="elMenuVerticalDemo" background-color="#545c64" text-color="#fff"
+                    active-text-color="#ffd04b" @select="handleSelect" :unique-opened='true'>
+                    <el-submenu index="0">
+                        <template slot="title">
+                            <i class="el-icon-location"></i>
+                            <span>首页</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item index="0-1">欢迎</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="1">
+                        <template slot="title">
+                            <i class="el-icon-s-grid"></i>
+                            <span>娱乐</span>
+                        </template>
+                        <el-menu-item-group>
+                            <template slot="title">游戏</template>
+                            <el-menu-item index="1-1">游戏</el-menu-item>
+                        </el-menu-item-group>
+                        <el-menu-item-group title="幻灯片/轮播图">
+                            <el-menu-item index="1-3">幻灯片/轮播图</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="2">
+                        <template slot="title">
+                            <i class="el-icon-menu"></i>
+                            <span>看剧</span>
+                        </template>
+                        <el-menu-item-group>
+                            <template slot="title">看电影</template>
+                            <el-menu-item index="2-1">路线一</el-menu-item>
+                            <el-menu-item index="2-2">路线二</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="3">
+                        <template slot="title">
+                            <i class="el-icon-document"></i>
+                            <span>漫画</span>
+                        </template>
+                        <el-menu-item-group>
+                            <template slot="title">看漫画</template>
+                            <el-menu-item index="3-1">路线一</el-menu-item>
+                            <el-menu-item index="3-2">路线二</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="4">
+                        <template slot="title">
+                            <i class="el-icon-setting"></i>
+                            <span>设置</span>
+                        </template>
+                        <el-menu-item-group>
+                            <template slot="title">关于</template>
+                            <el-menu-item index="4-1">个人信息</el-menu-item>
+                            <el-menu-item index="4-2">登录/注册</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                </el-menu>
+            </div>
+            <div class="youneirong">
+                <div class="jubuneirong" v-if="indexPath === '0-1'">
+                    <el-breadcrumb separator="/">
+                        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                        <el-breadcrumb-item><a href="">欢迎</a></el-breadcrumb-item>
+                    </el-breadcrumb>
+                    <span id="big_title">welcome to here!</span>
+                    <canvas></canvas>
+                    <img id="big_img" src="https://i03piccdn.sogoucdn.com/549b0894fae1fb5d" alt="">
+                </div>
+                <div class="jubuneirong" v-if="indexPath === '1-1'">
+                    <div class="bizhi">
+                        <img src="" alt="">
+                    </div>
+                    <div class="mianbaoxie">
+                        <el-breadcrumb separator="/">
+                            <el-breadcrumb-item :to="{ path: '/' }">娱乐</el-breadcrumb-item>
+                            <el-breadcrumb-item>游戏</el-breadcrumb-item>
+                            <el-breadcrumb-item>游戏</el-breadcrumb-item>
+                        </el-breadcrumb>
+                    </div>
+                    <ul class="waikuang">
+                        <li class="neikuang" v-for="(item,index) in arr_game" :key="index">
+                            <img :src="item.img" alt="">
+                            <p class="neikuang_title"><a :href="item.a">{{item.title}}</a></p>
+                            <p class="neikuang_content">
+                                {{item.p}}
+                            </p>
+                            <div class="xiakaung">
+                                <img :src="item.touxiang" alt="">
+                                <span>{{item.shijian}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- <div class="fenye">
+                        <el-pagination small layout="prev, pager, next" :current-page="queryInfo.pagenum" :page-size=6 :total="arr_game.length"
+                            @current-change="arrGameCurrentChange">
+                        </el-pagination>
+                    </div> -->
+                </div>
+                <div class="jubuneirong" v-if="indexPath === '1-3'">
+                    <div class="bizhi">
+                        <img src="" alt="">
+                    </div>
+                    <div class="mianbaoxie">
+                        <el-breadcrumb separator="/">
+                            <el-breadcrumb-item :to="{ path: '/' }">娱乐</el-breadcrumb-item>
+                            <el-breadcrumb-item>幻灯片和轮播图</el-breadcrumb-item>
+                            <el-breadcrumb-item>幻灯片和轮播图</el-breadcrumb-item>
+                        </el-breadcrumb>
+                    </div>
+                    <ul class="waikuang">
+                        <li class="neikuang" v-for="(item,index) in arr_lunbotu" :key="index">
+                            <img :src="item.img" alt="">
+                            <p class="neikuang_title"><a :href="item.a">{{item.title}}</a></p>
+                            <p class="neikuang_content">
+                                {{item.p}}
+                            </p>
+                            <div class="xiakaung">
+                                <img :src="item.touxiang" alt="">
+                                <span>{{item.shijian}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- <div class="fenye">
+                        <el-pagination small layout="prev, pager, next" :current-page="queryInfo.pagenum" :page-size=6 :total="arr_lunbotu.length"
+                            @current-change="arrLunBoTuCurrentChange">
+                        </el-pagination>
+                    </div> -->
+                </div>
+                <div class="jubuneirong" v-if="indexPath === '2-1'">
+                    <div class="bizhi">
+                        <img src="" alt="">
+                    </div>
+                    <div class="mianbaoxie">
+                        <el-breadcrumb separator="/">
+                            <el-breadcrumb-item :to="{ path: '/' }">娱乐</el-breadcrumb-item>
+                            <el-breadcrumb-item>幻灯片和轮播图</el-breadcrumb-item>
+                            <el-breadcrumb-item>幻灯片和轮播图</el-breadcrumb-item>
+                        </el-breadcrumb>
+                        <ul class="waikuang">
+                            <li class="neikuang" v-for="(item,index) in arr_internet" :key="index">
+                                <img :src="item.img" alt="">
+                                <p class="neikuang_title"><a :href="item.a">{{item.title}}</a></p>
+                                <p class="neikuang_content">
+                                    {{item.p}}
+                                </p>
+                                <div class="xiakaung">
+                                    <img :src="item.touxiang" alt="">
+                                    <span>{{item.shijian}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="jubuneirong" v-if="indexPath === '2-2'">
+                    <div class="bizhi">
+                        <img src="" alt="">
+                    </div>
+                    <div class="mianbaoxie">
+                        <el-breadcrumb separator="/">
+                            <el-breadcrumb-item :to="{ path: '/' }">娱乐</el-breadcrumb-item>
+                            <el-breadcrumb-item>幻灯片和轮播图</el-breadcrumb-item>
+                            <el-breadcrumb-item>幻灯片和轮播图</el-breadcrumb-item>
+                        </el-breadcrumb>
+                        <ul class="waikuang">
+                            <li class="neikuang" v-for="(item,index) in arr_movie" :key="index">
+                                <img :src="item.img" alt="">
+                                <p class="neikuang_title"><a :href="item.a">{{item.title}}</a></p>
+                                <p class="neikuang_content">
+                                    {{item.p}}
+                                </p>
+                                <div class="xiakaung">
+                                    <img :src="item.touxiang" alt="">
+                                    <span>{{item.shijian}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="jubuneirong" v-if="indexPath === '3-1'">
+                    <div class="bizhi">
+                        <img src="" alt="">
+                    </div>
+                    <div class="mianbaoxie">
+                        <el-breadcrumb separator="/">
+                            <el-breadcrumb-item :to="{ path: '/' }">娱乐</el-breadcrumb-item>
+                            <el-breadcrumb-item>幻灯片和轮播图</el-breadcrumb-item>
+                            <el-breadcrumb-item>幻灯片和轮播图</el-breadcrumb-item>
+                        </el-breadcrumb>
+                        <ul class="waikuang">
+                            <li class="neikuang" v-for="(item,index) in arr_cartoon" :key="index">
+                                <img :src="item.img" alt="">
+                                <p class="neikuang_title"><a :href="item.a">{{item.title}}</a></p>
+                                <p class="neikuang_content">
+                                    {{item.p}}
+                                </p>
+                                <div class="xiakaung">
+                                    <img :src="item.touxiang" alt="">
+                                    <span>{{item.shijian}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="jubuneirong" v-if="indexPath === '3-2'">
+                    <div class="bizhi">
+                        <img src="" alt="">
+                    </div>
+                    <div class="mianbaoxie">
+                        <el-breadcrumb separator="/">
+                            <el-breadcrumb-item :to="{ path: '/' }">娱乐</el-breadcrumb-item>
+                            <el-breadcrumb-item>幻灯片和轮播图</el-breadcrumb-item>
+                            <el-breadcrumb-item>幻灯片和轮播图</el-breadcrumb-item>
+                        </el-breadcrumb>
+                        <ul class="waikuang">
+                            <li class="neikuang" v-for="(item,index) in arr_cartoon2" :key="index">
+                                <img :src="item.img" alt="">
+                                <p class="neikuang_title"><a :href="item.a">{{item.title}}</a></p>
+                                <p class="neikuang_content">
+                                    {{item.p}}
+                                </p>
+                                <div class="xiakaung">
+                                    <img :src="item.touxiang" alt="">
+                                    <span>{{item.shijian}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div class="jubuneirong" v-if="indexPath === '4-1'">
+                    <div class="bizhi">
+                        <img src="" alt="">
+                    </div>
+                    <div class="mianbaoxie">
+                        <el-breadcrumb separator="/">
+                            <el-breadcrumb-item :to="{ path: '/' }">娱乐</el-breadcrumb-item>
+                            <el-breadcrumb-item>幻灯片和轮播图</el-breadcrumb-item>
+                            <el-breadcrumb-item>幻灯片和轮播图</el-breadcrumb-item>
+                        </el-breadcrumb>
+                        
+                    </div>
+                </div>
+                <div class="jubuneirong" v-if="indexPath === '4-2'">
+                    <div class="bizhi">
+                        <img src="" alt="">
+                    </div>
+                    <div class="mianbaoxie">
+                        <el-breadcrumb separator="/">
+                            <el-breadcrumb-item :to="{ path: '/' }">娱乐</el-breadcrumb-item>
+                            <el-breadcrumb-item>幻灯片和轮播图</el-breadcrumb-item>
+                            <el-breadcrumb-item>幻灯片和轮播图</el-breadcrumb-item>
+                        </el-breadcrumb>
+                        
+                    </div>
+                </div> -->
+            </div>
 
-				/*** These ones have to be arrays of [min,max].  ***/
-				lightStickWidth: [0.12, 0.5],
-				lightStickHeight: [1.3, 1.7],
+        </div>
+    </div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            // 是否折叠
+            return {
+                isCollapse: true,
+                indexPath: '0-1',
+                arr_game: [
 
-				movingAwaySpeed: [60, 80],
-				movingCloserSpeed: [-120, -160],
+                    {
+                        img: './image/1.jpeg',
+                        title: '自制植物大战僵尸',
+                        a: 'https://lizhenglong0430.github.io/pza/',
+                        p: '这是一款js语言写的小游戏，里面富含了很多有趣的关卡，其中由作者精心疯狂加强，达到了噩梦模式的关卡，非常的好玩。',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1709/201709061510.jpg',
+                        title: '开心消消乐小游戏',
+                        a: 'http://www.htmleaf.com/Demo/201709064725.html',
+                        p: '《开心消消乐》 是一款三消游戏，游戏画面精美、上手简单。玩家只需滑动手指让三个及以上的同色小动物横竖相连即可消除，完成每关的指定消除目标就可以过关。',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1609/201609011602.jpg',
+                        title: '经典赛车小游戏',
+                        a: 'http://www.htmleaf.com/Demo/201609013946.html',
+                        p: '这是一款使用canvas制作的经典赛车小游戏。它模拟经典的任天堂赛车游戏，用户可以使用方向键来控制赛车的加速和左右移动。',
+                        touxiang: 'http://www.htmleaf.com/templets/default/images/html5-32.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1507/201507091812.jpg',
+                        title: '贪吃蛇小游戏',
+                        a: 'http://www.htmleaf.com/Demo/201507092198.html',
+                        p: '这是一款非常有趣的HTML5响应式网页贪吃蛇小游戏。在游戏中，你可以使用键盘的上下左右方向键来控制贪吃蛇的运动方向，屏幕中会随机出现一个绿色的食物，你的任务就是控制蛇去吃这个食物。',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1507/201507261613.jpg',
+                        title: '高性能打方块小游戏',
+                        a: 'http://www.htmleaf.com/Demo/201507262302.html',
+                        p: 'BlockBlaster是一款高性能的HTML5 canvas打方块小游戏。这个HTML5游戏仅使用12KB的javascript代码来完成。它可以连发子弹，敌方方块被打碎后会分裂为多个小方块。整个游戏非常流畅，性能非常好。',
+                        touxiang: 'http://www.htmleaf.com/templets/default/images/html5-32.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1410/201410051726.jpg',
+                        title: '捕鱼达人',
+                        a: 'http://www.htmleaf.com/Demo/2014100551.html',
+                        p: '这是一款捕鱼达人（fishjoy）网页版游戏的源码。可以在线玩也可以下载到本地。它使用html5技术和javascript制作而成。整个游戏的仿真度99.99%。',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1507/201507011738.jpg',
+                        title: '趣味飞船捡金币小游戏',
+                        a: 'http://www.htmleaf.com/Demo/201507012146.html',
+                        p: '这是一款非常有趣的HTML5 canvas飞船捡金币小游戏。游戏中你可以使用上下左右方向键来控制小飞船的飞行。金币会在屏幕中随机出现，飞船具有吸附金币的能力，越接近吸附的越多，非常有意思。',
+                        touxiang: 'http://www.htmleaf.com/templets/default/images/html5-32.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1410/201410271656.jpg',
+                        title: '坦克大战游戏',
+                        a: 'http://www.htmleaf.com/Demo/20141027307.html',
+                        p: '这是一款使用html5 canvas和js制作的经典90版坦克大战小游戏。这个html5坦克大战游戏中的各种坦克的等级和宝物与原版完全一样，想研究坦克大战源码的朋友速度了。',
+                        touxiang: 'http://www.htmleaf.com/templets/default/images/html5-32.png',
+                        shijian: '2021-08-27'
+                    },
 
-				/****  Anything below can be either a number or an array of [min,max] ****/
 
-				// Length of the lights. Best to be less than total length
-				carLightsLength: [400 * 0.05, 400 * 0.15],
-				// Radius of the tubes
-				carLightsRadius: [0.05, 0.14],
-				// Width is percentage of a lane. Numbers from 0 to 1
-				carWidthPercentage: [0.3, 0.5],
-				// How drunk the driver is.
-				// carWidthPercentage's max + carShiftX's max -> Cannot go over 1. 
-				// Or cars start going into other lanes 
-				carShiftX: [-0.2, 0.2],
-				// Self Explanatory
-				carFloorSeparation: [0.05, 1],
+                ],
+                arr_lunbotu: [
+                    {
+                        img: 'http://img.htmleaf.com/1910/201910302798.jpg',
+                        title: '扑克堆叠式卡片轮播图',
+                        a: 'http://www.htmleaf.com/Demo/201910305827.html',
+                        p: '这是一款js扑克堆叠式卡片轮播图插件。高轮播图的所有图片像扑克牌一样堆叠在一起，通过鼠标拖拽最上面的一张图片，就可以显示出下一张图片来。',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1907/201907226463.jpg',
+                        title: '3D旋转木马特效',
+                        a: 'http://www.htmleaf.com/Demo/201907225743.html',
+                        p: '这是一款js 3D旋转木马特效插件。该插件通过CSS3和纯js来完成，可在中以3D旋转的方式来展示一组图片。',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1906/201906270863.jpg',
+                        title: '轮播图camRoll Slider',
+                        a: 'http://www.htmleaf.com/Demo/201906275711.html',
+                        p: 'camRoll Slider是一款jQuery轮播图插件。该插件使用简单，界面采用CSS3过渡动画，简洁时尚。',
+                        touxiang: 'http://www.htmleaf.com/templets/default/images/html5-32.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1906/201906058219.jpg',
+                        title: '时尚简洁的轮播图',
+                        a: 'http://www.htmleaf.com/Demo/201906055679.html',
+                        p: '这是一款时尚简洁的js轮播图特效插件。该轮播图采用es6语法制作，底部带缩略图和描述信息。图片和描述信息在切换时同步滑动。',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1904/201904306599.jpg',
+                        title: '带视觉差效果的超酷轮播图',
+                        a: 'http://www.htmleaf.com/Demo/201904305631.html',
+                        p: '这是一款带视觉差效果的超酷js轮播图插件。该轮播图通过js代码将多重图片合成为canvas元素，在图片移动时产生炫酷的视觉差效果。',
+                        touxiang: 'http://www.htmleaf.com/templets/default/images/html5-32.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1812/201812141536.jpg',
+                        title: '超炫酷轮播图过渡动画特效',
+                        a: 'http://www.htmleaf.com/Demo/201812145457.html',
+                        p: '这是一款js和CSS3超炫酷轮播图过渡动画特效。该特效的动画使用TweenMax来实现，当轮播图切换的时候，制作炫酷的弹性动画特效。',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1810/201810271432.jpg',
+                        title: '动感圆形轮播图特效',
+                        a: 'http://www.htmleaf.com/Demo/201810295389.html',
+                        p: '这是一款基于anime.js的动感圆形轮播图特效。该轮播图特效在切换时，图片沿着圆形的路径进行轮播，并且各种图片之间的运动速度的差异，形成了视觉差特效。',
+                        touxiang: 'http://www.htmleaf.com/templets/default/images/html5-32.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1809/201809011437.jpg',
+                        title: '超酷对角线轮播图特效',
+                        a: 'http://www.htmleaf.com/Demo/201809015309.html',
+                        p: '这是一款效果非常炫酷的js对角线轮播图特效。该特效切换轮播图的方式为往左上角移动，每个轮播图项可以全屏展开，并且缩略图带有鼠标悬停动画效果。',
+                        touxiang: 'http://www.htmleaf.com/templets/default/images/html5-32.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1807/201807111551.jpg',
+                        title: '圆形轮播图插件circleCarousel',
+                        a: 'http://www.htmleaf.com/Demo/201807115221.html',
+                        p: 'circleCarousel是一款jQuery圆形轮播图插件。该jQuery圆形轮播图插件能够生成一组围绕中心旋转的圆形轮播图，点击图片时会有炫酷的旋转动画。',
+                        touxiang: 'http://www.htmleaf.com/templets/default/images/html5-32.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1805/201805221448.jpg',
+                        title: '左右两侧分屏动画轮播图特效',
+                        a: 'http://www.htmleaf.com/Demo/201805225135.html',
+                        p: '这是一款js左右两侧分屏动画轮播图特效。该轮播图特效中，图片和描述文本分居屏幕的两侧，在鼠标上下滚动时，图片和描述文本做上下相对运动，效果非常炫酷。',
+                        touxiang: 'http://www.htmleaf.com/templets/default/images/html5-32.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1804/201804101521.jpg',
+                        title: '3D立方体图片画廊特效',
+                        a: 'http://www.htmleaf.com/Demo/201804105067.html',
+                        p: '这是一款js和CSS3 3D立方体图片画廊特效。该3D立方体图片画廊特效通过CSS3进行布局，构建立方体，然后通过简单的js代码来完成点击缩略图进行立方体旋转的操作',
+                        touxiang: 'http://www.htmleaf.com/templets/default/images/html5-32.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://img.htmleaf.com/1801/201801311450.jpg',
+                        title: '全屏3D轮播图',
+                        a: 'http://www.htmleaf.com/Demo/201801314960.html',
+                        p: 'jQuery.PageScroll3D是一款jQuery全屏3D轮播图插件。该jquery轮播图插件采用响应式设计，可以在垂直方向上制作出类似立方体滚动的3d轮播图效果。',
+                        touxiang: 'http://www.htmleaf.com/templets/default/images/html5-32.png',
+                        shijian: '2021-08-27'
+                    },
+                ],
+                arr_internet: [
+                    {
+                        img: 'https://img01.sogoucdn.com/app/a/100520115/81a756b78734e2549f8b821a0d38a89f',
+                        title: '二三四五【电视剧大全】',
+                        a: 'https://tv.2345.com/',
+                        p: '为您提供2021新电视剧排行榜，韩国电视剧、泰国电视剧、香港TVB全新电视剧排行榜、好看的电视剧等热播电视剧排行榜，并提供免费高清电视剧下载及在线观看，在线看电视剧尽在2345电视剧大全。',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://www.great-elec.com/templets/default/images/logo.png',
+                        title: '极速影院',
+                        a: 'http://www.great-elec.com/',
+                        p: '无',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'https://i04piccdn.sogoucdn.com/1937ccc40024981c',
+                        title: '星辰影院',
+                        a: 'https://www.hdydd.com/',
+                        p: '无广告无删减版手机在线收看不卡',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'https://i04piccdn.sogoucdn.com/1937ccc40024981c',
+                        title: '爱韩剧网',
+                        a: 'https://www.hdydd.com/',
+                        p: '这群成长于80年代的青年创作者，所受到的滋养不仅仅来自于国产经典影视剧，同时也吸纳了美剧、韩剧等国外精品剧集创作手法，...',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://www.dadatu18.com/templets/dadatu18/images/img/logo.png',
+                        title: '达达兔影院',
+                        a: 'http://www.dadatu18.com/',
+                        p: '达达兔(dadatu18.com)手机访问效果更好，您喜欢请推荐好友是对我们最大的支持！...',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                ],
+                arr_movie: [
+                    {
+                        img: 'https://i04piccdn.sogoucdn.com/1937ccc40024981c',
+                        title: '侠客分享网(看电影)',
+                        a: 'http://www.xiakedy.com/',
+                        p: '无',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'https://i04piccdn.sogoucdn.com/1937ccc40024981c',
+                        title: '易看电影(看电影)',
+                        a: 'https://www.ekmov.com/?__cf_chl_jschl_tk__=pmd_84shQhh8leFMDl3nT7klYoawS4mLg8HGGQDLiE_M9I4-1630494546-0-gqNtZGzNAhCjcnBszQfl',
+                        p: '无',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                ],
+                arr_cartoon: [
+                    {
+                        img: 'https://i04piccdn.sogoucdn.com/1937ccc40024981c',
+                        title: '古古漫画',
+                        a: 'http://www.gugu5.com/',
+                        p: '无',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'https://res1.xiaoqinre.com/images/logo/logo.png',
+                        title: '古风漫画网',
+                        a: 'https://www.gufengmh8.com/',
+                        p: '无',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://m.sixmh7.com/style/images/logo.png',
+                        title: '6漫画',
+                        a: 'http://m.sixmh7.com/',
+                        p: '无',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                ],
+                arr_cartoon2: [
+                    {
+                        img: 'https://www.manhuacat.com/static/images/logo-header.png',
+                        title: '漫画猫',
+                        a: 'https://www.manhuacat.com/',
+                        p: '无',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'http://www.kuman57.com/images/logo.png',
+                        title: '酷漫屋',
+                        a: 'http://www.kuman57.com/',
+                        p: '无',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
+                        img: 'https://i04piccdn.sogoucdn.com/1937ccc40024981c',
+                        title: '樱花动漫',
+                        a: 'https://www.295k.com/',
+                        p: '无',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                ],
+                queryInfo: {
+                    query: '',
+                    // 当前的页数
+                    // pagenum: 1,
+                    // 当前每页显示多少条数据
+                    pagesize: 6
+                },
+                // 拉伸左侧菜单
+                elMenuVerticalDemo: 'buchuxian'
+            }
+        },
+        created() {
+            // this.arrGameCurrentChange(1)
+        },
+        methods: {
+            handleSelect(indexPath) {
+                this.indexPath = indexPath
+                if(this.indexPath === '4-1'){
+                    alert('还没开通')
+                    return window.location.href = "http://127.0.0.1:5500/vue+jquery/index.html"
+                }
+                if(this.indexPath === '4-2'){
+                    alert('尽情期待')
+                    return window.location.href = "http://127.0.0.1:5500/vue+jquery/index.html"
+                }
+                else{
+                    console.log(this.indexPath);
+                }
+            },
+            // getArrGameList(yeshu) {
+            //     let tmp = this.arr_game.slice((yeshu - 1) * 6, yeshu * 6)
+            //     this.arrGame = tmp 
+            // },
+            // arrGameCurrentChange(newPage) {
+            //     let pagenum = newPage
+            //     this.getArrGameList(pagenum)
+            // },
+            kuozhanfu() {
+                if (this.elMenuVerticalDemo != 'lachu') {
+                    return this.elMenuVerticalDemo = 'lachu'
+                }
+                else {
+                    return this.elMenuVerticalDemo = 'laru'
+                }
+            }
+        }
+    })
+</script>
+<script src="js/stopExecutionOnTimeout.js" type="text/javascript"></script>
+<script>
+    var canvas = document.querySelector('canvas');
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    c = canvas.getContext('2d');
 
-				colors: {
-					roadColor: 0x080808,
-					islandColor: 0x0a0a0a,
-					background: 0x000000,
-					shoulderLines: 0x131318,
-					brokenLines: 0x131318,
-					/***  Only these colors can be an array ***/
-					leftCars: [0xff102a, 0xEB383E, 0xff102a],
-					rightCars: [0xdadafa, 0xBEBAE3, 0x8F97E4],
-					sticks: 0xdadafa,
-				}
-			};
+    window.addEventListener('resize', function () {
+        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
 
-			const myApp = new App(container, options);
-			myApp.loadAssets().then(myApp.init)
-		})()
-		</script>
-	</body>
+        initCanvas();
+    });
+
+    var mouse = {
+        x: undefined,
+        y: undefined
+    };
+
+    window.addEventListener('mousemove',
+        function (event) {
+            mouse.x = event.x;
+            mouse.y = event.y;
+            drawCircles();
+        });
+
+    window.addEventListener("touchmove",
+        function (event) {
+            let touch = event.touches[0];
+            mouse.x = touch.clientX;
+            mouse.y = touch.clientY;
+            drawCircles();
+        });
+
+
+    function Circle(x, y, radius, vx, vy, rgb, opacity, birth, life) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.minRadius = radius;
+        this.vx = vx;
+        this.vy = vy;
+        this.birth = birth;
+        this.life = life;
+        this.opacity = opacity;
+
+        this.draw = function () {
+            c.beginPath();
+            c.arc(this.x, this.y, this.radius, Math.PI * 2, false);
+            c.fillStyle = 'rgba(' + rgb + ',' + this.opacity + ')';
+            c.fill();
+        };
+
+        this.update = function () {
+            if (this.x + this.radius > innerWidth || this.x - this.radius < 0) {
+                this.vx = -this.vx;
+            }
+
+            if (this.y + this.radius > innerHeight || this.y - this.radius < 0) {
+                this.vy = -this.vy;
+            }
+
+            this.x += this.vx;
+            this.y += this.vy;
+
+            this.opacity = 1 - (frame - this.birth) * 1 / this.life;
+
+            if (frame > this.birth + this.life) {
+                for (let i = 0; i < circleArray.length; i++) {
+                    if (this.birth == circleArray[i].birth && this.life == circleArray[i].life) {
+                        circleArray.splice(i, 1);
+                        break;
+                    }
+                }
+            } else {
+                this.draw();
+            }
+        };
+
+    }
+
+    var circleArray = [];
+
+    function initCanvas() {
+        circleArray = [];
+    }
+
+    var colorArray = [
+        '355,85,80',
+        '9,80,100',
+        '343,81,45'];
+
+
+    function drawCircles() {
+        for (let i = 0; i < 6; i++) {
+            let radius = Math.floor(Math.random() * 4) + 2;
+            let vx = Math.random() * 2 - 1;
+            let vy = Math.random() * 2 - 1;
+            let spawnFrame = frame;
+            let rgb = colorArray[Math.floor(Math.random() * colorArray.length)];
+            let life = 100;
+            circleArray.push(new Circle(mouse.x, mouse.y, radius, vx, vy, rgb, 1, spawnFrame, life));
+
+        }
+    }
+
+    var frame = 0;
+    function animate() {
+        requestAnimationFrame(animate);
+        frame += 1;
+        c.clearRect(0, 0, innerWidth, innerHeight);
+        for (let i = 0; i < circleArray.length; i++) {
+            circleArray[i].update();
+        }
+
+    }
+
+    initCanvas();
+    animate();
+
+    // This is just for demo purposes :
+    for (let i = 1; i < 110; i++) {
+        (function (index) {
+            setTimeout(function () {
+                mouse.x = 100 + i * 10;
+                mouse.y = 100;
+                drawCircles();
+            }, i * 10);
+        })(i);
+    }
+</script>
+
 </html>

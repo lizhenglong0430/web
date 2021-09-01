@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.zhengtikuangjia {
+    /* background-color: red; */
+    max-width: 1918px;
+    max-height: 816px;
+    min-width: 375px;
+    min-height: 607px;
+}
+
+.toububuju {
+    width: 100%;
+    height: 60px;
+    background-color: #373d41;
+    color: #fff;
+    line-height: 60px;
+    padding-left: 40px;
+    position: fixed;
+    top: 0;
+}
+.toububuju > i{
+    margin-right: 70px;
+}
+
+.neirongbuju {
+    height: 100%;
+    width: 100%;
+}
+
+.zuocelan {
+    width: 201px;
+    /* height: 100%; */
+    position: fixed;
+    z-index: 99;
+    /* display: none; */
+}
+.buchuxian{
+    width: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.lachu {
+    width: 200px;
+    height: 100%;
+    animation: myfirst 1s;
+    animation-fill-mode: forwards;
+    overflow: hidden;
+    /* transition-property: width;
+    transition: width 1s 0s linear; */
+}
+@keyframes myfirst {
+    from {width: 0;}
+    to {width: 200px;}
+    
+}
+.laru {
+    width: 0;
+    height: 100%;
+    animation: myfirst1 1s;
+    animation-fill-mode: forwards;
+    overflow: hidden;
+    /* transition-property: width;
+    transition: width 1s 0s linear; */
+}
+@keyframes myfirst1 {
+    from {width: 200px;}
+    to {width: 0;}
+    
+}
+
+.youneirong {
+    max-width: 1918px;
+    height: 100%;
+    /* margin-left: 201px; */
+    margin-top: 60px;
+    z-index: 0;
+}
