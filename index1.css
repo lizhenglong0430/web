@@ -34,8 +34,9 @@
     width: 201px;
     /* height: 100%; */
     position: fixed;
-    z-index: 99;
+    z-index: 5;
     /* display: none; */
+    
 }
 .buchuxian{
     width: 0;
@@ -77,5 +78,5 @@
     height: 100%;
     /* margin-left: 201px; */
     margin-top: 60px;
-    z-index: 0;
+    z-index: 10;
 }
