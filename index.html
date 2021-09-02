@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="./index1.css">
     <link rel="stylesheet" href="./index2.css">
-    <link rel="stylesheet" href="./fengche.css">
 </head>
 <style>
     canvas {
@@ -54,6 +53,7 @@
         <div class="toububuju"><i class="el-icon-s-unfold" @click="kuozhanfu"></i> 政函数的娱乐平台</div>
         <div class="neirongbuju">
             <div class="zuocelan">
+                
                 <el-menu default-active="0-1" :class="elMenuVerticalDemo" background-color="#545c64" text-color="#fff"
                     active-text-color="#ffd04b" @select="handleSelect" :unique-opened='true'>
                     <el-submenu index="0">
@@ -496,6 +496,14 @@
                 ],
                 arr_internet: [
                     {
+                        img: 'https://img02.sogoucdn.com/v2/thumb/crop/xy/ai/x/0/y/0/w/120/h/135/iw/90/ih/101/t/0/ir/3?t=2&appid=200997&url=https%3A%2F%2Fpuui.qpic.cn%2Fvcover_vt_pic%2F0%2Fsdp0012dg5tryfj1626745910%2F0&referer=https%3A%2F%2Fv.qq.com%2Fdetail%2Fs%2Fsdp0012dg5tryfj.html&sign=de627705fbf3f1a734e477536ff0efe7',
+                        title: '爱情公寓1',
+                        a: 'https://www.youtube.com/watch?v=mV0HQj44vtM&list=PLBJj3V6KipgavsFYmTEYaruo6UwkXukHC',
+                        p: 'youtubo上的',
+                        touxiang: './image/头像.png',
+                        shijian: '2021-08-27'
+                    },
+                    {
                         img: 'https://img01.sogoucdn.com/app/a/100520115/81a756b78734e2549f8b821a0d38a89f',
                         title: '二三四五【电视剧大全】',
                         a: 'https://tv.2345.com/',
@@ -644,13 +652,33 @@
             //     this.getArrGameList(pagenum)
             // },
             kuozhanfu() {
+                var zuocelan = document.querySelector('.zuocelan')
                 if (this.elMenuVerticalDemo != 'lachu') {
+                    this.kongbai()
+                    zuocelan.style.width = '375' + 'px'
                     return this.elMenuVerticalDemo = 'lachu'
                 }
                 else {
+                    zuocelan.style.width = '0'
                     return this.elMenuVerticalDemo = 'laru'
                 }
-            }
+            },
+            kongbai() {
+                var zuocelan = document.querySelector('.zuocelan')
+                var elmenu = document.querySelector('.el-menu')
+                zuocelan.addEventListener('click', function (e) {
+                    var x = e.pageX
+                    var y = e.pageY
+                    if (x > 200) {
+                        elmenu.classList.add('laru')
+                        elmenu.classList.remove('lachu')
+                        zuocelan.style.width = '0'
+                    } else {
+                        elmenu.classList.remove('laru')
+                    }
+                })
+            },
+
         }
     })
 </script>
