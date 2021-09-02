@@ -53,7 +53,7 @@
         <div class="toububuju"><i class="el-icon-s-unfold" @click="kuozhanfu"></i> 政函数的娱乐平台</div>
         <div class="neirongbuju">
             <div class="zuocelan">
-                
+
                 <el-menu default-active="0-1" :class="elMenuVerticalDemo" background-color="#545c64" text-color="#fff"
                     active-text-color="#ffd04b" @select="handleSelect" :unique-opened='true'>
                     <el-submenu index="0">
@@ -115,10 +115,12 @@
             </div>
             <div class="youneirong">
                 <div class="jubuneirong" v-if="indexPath === '0-1'">
-                    <el-breadcrumb separator="/">
-                        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                        <el-breadcrumb-item><a href="">欢迎</a></el-breadcrumb-item>
-                    </el-breadcrumb>
+                    <div class="mianbaoxie">
+                        <el-breadcrumb separator="/">
+                            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                            <el-breadcrumb-item><a href="">欢迎</a></el-breadcrumb-item>
+                        </el-breadcrumb>
+                    </div>
                     <span id="big_title">welcome to here!</span>
                     <canvas></canvas>
                     <img id="big_img" src="https://i03piccdn.sogoucdn.com/549b0894fae1fb5d" alt="">
