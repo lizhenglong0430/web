@@ -88,3 +88,37 @@
     
     /* z-index: 0; */
 }
+canvas {
+    margin: 0;
+    padding: 0;
+    touch-action: none;
+    margin-top: -100px;
+    /* background-color: skyblue; */
+    /* z-index: -40; */
+    z-index: 99;
+}
+
+#showtime2 {
+    position: absolute;
+    padding-top: 50px;
+    width: 250px;
+    height: 50px;
+    top: 0;
+    left: 50%;
+    margin: 200px auto;
+    font-size: 30px;
+    margin-left: 30px;
+    transform: translateX(-50%);
+    color: red;
+    z-index: -30;
+}
+
+#big_img {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-top: -660px;
+    z-index: -55;
+}
